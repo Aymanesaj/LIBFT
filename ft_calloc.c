@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asajed <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 09:39:34 by asajed            #+#    #+#             */
-/*   Updated: 2024/10/24 20:37:34 by asajed           ###   ########.fr       */
+/*   Created: 2024/10/24 18:43:43 by asajed            #+#    #+#             */
+/*   Updated: 2024/10/24 20:47:28 by asajed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
+#include <stdlib.h>
 
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*dst;
+
+	dst = b;
 	i = 0;
-	while (s[i])
+	while (i < len)
 	{
-		if (s[i] == c)
-			return ((char *)(s + i));
+		dst[i] = (unsigned char) c;
 		i++;
 	}
-	if (s[i] == c)
-		return ((char *)(s + i));
-	return (0);
+	return (b);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*s;
+	size_t	dsize;
+
+	dsize = count * size;
+	s = (void *)malloc(dsize);
+	if (s == NULL)
+		return (NULL);
+	ft_memset (s, 0, dsize);
+	return (s);
 }

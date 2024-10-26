@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asajed <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 09:39:34 by asajed            #+#    #+#             */
-/*   Updated: 2024/10/24 20:37:34 by asajed           ###   ########.fr       */
+/*   Created: 2024/10/25 15:30:42 by asajed            #+#    #+#             */
+/*   Updated: 2024/10/26 12:02:51 by asajed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
+#include <stdlib.h>
 
-	i = 0;
-	while (s[i])
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*v;
+	size_t	i;
+	size_t	j;
+
+	j = 0;
+	while (s[j])
+		j++;
+	if (start >= j)
 	{
-		if (s[i] == c)
-			return ((char *)(s + i));
-		i++;
+		v = (char *)malloc(1);
+		v[0] = '\0';
+		return (v);
 	}
-	if (s[i] == c)
-		return ((char *)(s + i));
-	return (0);
+	v = (char *)malloc(len + 1);
+	if (v == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start])
+	{
+		v[i] = s[start];
+		i++;
+		start++;
+	}
+	v[i] = '\0';
+	return (v);
 }
