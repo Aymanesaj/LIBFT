@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asajed <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 12:43:55 by asajed            #+#    #+#             */
-/*   Updated: 2024/10/29 17:42:55 by asajed           ###   ########.fr       */
+/*   Created: 2024/10/29 17:55:50 by asajed            #+#    #+#             */
+/*   Updated: 2024/10/29 18:42:44 by asajed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int	i;
-	unsigned int	len;
-	char			*str;
+	long	nb;
+	char	c;
 
-	len = 0;
-	while (s[len])
-		len++;
-	str = (char *)malloc(len + 1);
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	nb = n;
+	if (nb < 0)
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		nb = -nb;
+		write (fd, "-", 1);
 	}
-	str[i] = '\0';
-	return (str);
+	if ((nb / 10) > 0)
+		ft_putnbr_fd((nb / 10), fd);
+	c = (nb % 10) + '0';
+	write(fd, &c, 1);
 }
