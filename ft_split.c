@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 char	*ft_strncpy(char *dest, char const *src, unsigned int n)
 {
@@ -81,7 +82,10 @@ void	ft_ft(char **strs, char const *s, char c)
 		{
 			strs[j] = (char *)malloc((i - start + 1) * sizeof(char));
 			if (!strs[j])
+			{
 				ft_free(strs, j);
+				return ;
+			}
 			ft_strncpy(strs[j], s + start, i - start);
 			j++;
 		}
@@ -96,6 +100,8 @@ char	**ft_split(char const *s, char c)
 	int		j;
 
 	i = 0;
+	if (s == NULL)
+		return (NULL);
 	j = countword(s, c);
 	strs = (char **)malloc((j + 1) * sizeof(char *));
 	if (strs == NULL)
