@@ -6,38 +6,22 @@
 /*   By: asajed <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 18:54:32 by asajed            #+#    #+#             */
-/*   Updated: 2024/10/28 10:17:19 by asajed           ###   ########.fr       */
+/*   Updated: 2024/11/02 14:44:01 by asajed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-char	*ft_strncpy(char *dest, char const *src, unsigned int n)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (src[i] != '\0' && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
-}
-
-int	countword(char const *s, char c)
+static int	countword(char const *s, char c)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
+	if (!s)
+		return (0);
 	while (s[i] == c)
 		i++;
 	while (s[i])
@@ -49,12 +33,12 @@ int	countword(char const *s, char c)
 	return (j);
 }
 
-void	ft_free(char **strs, int j)
+static void	ft_free(char **strs, int j)
 {
 	int	i;
 
 	i = 0;
-	while (i < j)
+	while (i <= j)
 	{
 		free(strs[i]);
 		i++;
@@ -63,14 +47,12 @@ void	ft_free(char **strs, int j)
 	return ;
 }
 
-void	ft_ft(char **strs, char const *s, char c)
+static int	ft_ft(char **strs, char const *s, char c, int j)
 {
 	int	i;
-	int	j;
 	int	start;
 
 	i = 0;
-	j = 0;
 	while (s[i])
 	{
 		while (s[i] == c)
@@ -80,17 +62,17 @@ void	ft_ft(char **strs, char const *s, char c)
 			i++;
 		if (start < i)
 		{
-			strs[j] = (char *)malloc((i - start + 1) * sizeof(char));
+			strs[j] = ft_substr(s, start, i - start);
 			if (!strs[j])
 			{
 				ft_free(strs, j);
-				return ;
+				return (0);
 			}
-			ft_strncpy(strs[j], s + start, i - start);
 			j++;
 		}
 	}
 	strs[j] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
@@ -99,13 +81,15 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	int		j;
 
-	i = 0;
 	if (s == NULL)
 		return (NULL);
 	j = countword(s, c);
 	strs = (char **)malloc((j + 1) * sizeof(char *));
 	if (strs == NULL)
 		return (NULL);
-	ft_ft(strs, s, c);
+	j = 0;
+	i = ft_ft(strs, s, c, j);
+	if (i == 0)
+		return (NULL);
 	return (strs);
 }

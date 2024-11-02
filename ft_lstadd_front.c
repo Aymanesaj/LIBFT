@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asajed <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 11:30:24 by asajed            #+#    #+#             */
-/*   Updated: 2024/10/26 12:56:28 by asajed           ###   ########.fr       */
+/*   Created: 2024/11/01 14:23:21 by asajed            #+#    #+#             */
+/*   Updated: 2024/11/02 15:31:20 by asajed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int		i;
-	int		j;
-	int		len;
-	char	*str;
-
-	i = 0;
-	j = 0;
-	while (s1[i])
-		i++;
-	while (s2[j])
-		j++;
-	len = i + j;
-	str = (char *)malloc(len + 1);
-	if (str == NULL)
-		return (NULL);
-	ft_memcpy(str, s1, i);
-	ft_memcpy(str + i, s2, j);
-	str[len] = '\0';
-	return (str);
+	if (new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

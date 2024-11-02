@@ -11,28 +11,9 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	int		j;
-	char	*p;
-
-	i = 0;
-	while (s1[i])
-		i++;
-	p = malloc(i + 1);
-	j = 0;
-	while (j < i)
-	{
-		p[j] = s1[j];
-		j++;
-	}
-	p[j] = '\0';
-	return (p);
-}
-
-int	find_start(char const *s1, char const *set)
+static int	find_start(char const *s1, char const *set)
 {
 	int	i;
 	int	j;
@@ -56,7 +37,7 @@ int	find_start(char const *s1, char const *set)
 	return (i);
 }
 
-int	find_end(char const *s1, char const *set)
+static int	find_end(char const *s1, char const *set)
 {
 	int	i;
 	int	j;

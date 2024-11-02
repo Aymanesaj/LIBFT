@@ -6,7 +6,7 @@
 /*   By: asajed <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:51:09 by asajed            #+#    #+#             */
-/*   Updated: 2024/10/23 10:33:35 by asajed           ###   ########.fr       */
+/*   Updated: 2024/11/02 12:09:27 by asajed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	to_dst = dst;
 	to_src = src;
 	i = 0;
+	if (to_dst == to_src || !n)
+		return (dst);
 	while (i < n)
 	{
 		to_dst[i] = to_src[i];

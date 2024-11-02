@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-int	count_n(int n)
+static int	count_n(int n)
 {
 	int	j;
 

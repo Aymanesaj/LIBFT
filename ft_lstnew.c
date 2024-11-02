@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asajed <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 11:30:24 by asajed            #+#    #+#             */
-/*   Updated: 2024/10/26 12:56:28 by asajed           ###   ########.fr       */
+/*   Created: 2024/10/31 18:24:14 by asajed            #+#    #+#             */
+/*   Updated: 2024/11/01 14:15:23 by asajed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstnew(void *content)
 {
-	int		i;
-	int		j;
-	int		len;
-	char	*str;
+	t_list	*node;
 
-	i = 0;
-	j = 0;
-	while (s1[i])
-		i++;
-	while (s2[j])
-		j++;
-	len = i + j;
-	str = (char *)malloc(len + 1);
-	if (str == NULL)
+	node = (t_list *)malloc(sizeof(t_list));
+	if (!node)
 		return (NULL);
-	ft_memcpy(str, s1, i);
-	ft_memcpy(str + i, s2, j);
-	str[len] = '\0';
-	return (str);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }
