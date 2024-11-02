@@ -1,6 +1,5 @@
-CC      = gcc
+CC      = cc
 FLAGS   = -Wall -Wextra -Werror
-
 NAME    = libft.a
 SRC     = ft_atoi.c \
           ft_itoa.c \
@@ -36,24 +35,31 @@ SRC     = ft_atoi.c \
           ft_putendl_fd.c \
           ft_strlcat.c \
           ft_substr.c
-SRC_BNS = ft_lstnew.c \
-          ft_lstadd_front.c \
-          ft_lstsize.c \
-          ft_lstlast.c \
-          ft_lstadd_back.c 
+SRC_BNS = ft_lstnew_bonus.c \
+          ft_lstadd_front_bonus.c \
+          ft_lstsize_bonus.c \
+          ft_lstlast_bonus.c \
+          ft_lstadd_back_bonus.c \
+          ft_lstdelone_bonus.c \
+          ft_lstclear_bonus.c \
+          ft_lstiter_bonus.c
 OBJ     = $(SRC:.c=.o)
 OBJ_BNS = $(SRC_BNS:.c=.o)
 HEADER  = libft.h
 
+.PHONY : all bonus clean fclean re
+
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJ_BNS)
-	ar rcs $(NAME) $(OBJ) $(OBJ_BNS)
+$(NAME):$(OBJ)
+	$(CC) $(FLAGS) -c $(SRC)
+	ar rcs $(NAME) $(OBJ)
+	
+bonus:$(OBJ_BNS)
 
-%.o: %.c $(HEADER)
-	$(CC) $(FLAGS) -c $< -o $@
-
-bonus: $(OBJ_BNS)
+$(OBJ_BNS) : $(SRC_BNS)
+	$(CC) $(FLAGS) -c $(SRC_BNS)
+	ar rcs $(NAME) $(OBJ_BNS)
 
 clean:
 	rm -f $(OBJ) $(OBJ_BNS)
@@ -61,4 +67,13 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean $(NAME)
+
+
+
+
+
+
+
+
+
