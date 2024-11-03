@@ -22,7 +22,7 @@ static int	countword(char const *s, char c)
 	j = 0;
 	if (!s)
 		return (0);
-	while (s[i] == c)
+	while (s[i] == c & c != '\0')
 		i++;
 	while (s[i])
 	{
@@ -35,16 +35,12 @@ static int	countword(char const *s, char c)
 
 static void	ft_free(char **strs, int j)
 {
-	int	i;
-
-	i = 0;
-	while (i <= j)
+	while (j >= 0)
 	{
-		free(strs[i]);
-		i++;
+		free(strs[j]);
+		j--;
 	}
 	free (strs);
-	return ;
 }
 
 static int	ft_ft(char **strs, char const *s, char c, int j)
@@ -65,7 +61,7 @@ static int	ft_ft(char **strs, char const *s, char c, int j)
 			strs[j] = ft_substr(s, start, i - start);
 			if (!strs[j])
 			{
-				ft_free(strs, j);
+				ft_free(strs, --j);
 				return (0);
 			}
 			j++;
