@@ -1,5 +1,5 @@
 CC      = cc
-FLAGS   = -Wall -Wextra -Werror
+CFLAGS   = -Wall -Wextra -Werror
 NAME    = libft.a
 SRC     = ft_atoi.c \
           ft_itoa.c \
@@ -42,23 +42,24 @@ SRC_BNS = ft_lstnew_bonus.c \
           ft_lstadd_back_bonus.c \
           ft_lstdelone_bonus.c \
           ft_lstclear_bonus.c \
-          ft_lstiter_bonus.c
+          ft_lstiter_bonus.c \
+		  ft_lstmap_bonus.c
 OBJ     = $(SRC:.c=.o)
 OBJ_BNS = $(SRC_BNS:.c=.o)
 HEADER  = libft.h
 
-.PHONY : all bonus clean fclean re
+.PHONY : clean
 
 all: $(NAME)
 
 $(NAME):$(OBJ)
-	$(CC) $(FLAGS) -c $(SRC)
+	$(CC) $(CFLAGS) -c $(SRC)
 	ar rcs $(NAME) $(OBJ)
 	
 bonus:$(OBJ_BNS)
 
 $(OBJ_BNS) : $(SRC_BNS)
-	$(CC) $(FLAGS) -c $(SRC_BNS)
+	$(CC) $(CFLAGS) -c $(SRC_BNS)
 	ar rcs $(NAME) $(OBJ_BNS)
 
 clean:
@@ -69,11 +70,4 @@ fclean: clean
 
 re: fclean $(NAME)
 
-
-
-
-
-
-
-
-
+.SECONDARY: $(OBJ) $(OBJ_BNS)

@@ -22,7 +22,7 @@ static int	countword(char const *s, char c)
 	j = 0;
 	if (!s)
 		return (0);
-	while (s[i] == c & c != '\0')
+	while (s[i] == c && c != '\0')
 		i++;
 	while (s[i])
 	{
