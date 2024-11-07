@@ -53,14 +53,13 @@ HEADER  = libft.h
 all: $(NAME)
 
 $(NAME):$(OBJ)
-	$(CC) $(CFLAGS) -c $(SRC)
 	ar rcs $(NAME) $(OBJ)
 	
-bonus:$(OBJ_BNS)
-
-$(OBJ_BNS) : $(SRC_BNS)
-	$(CC) $(CFLAGS) -c $(SRC_BNS)
+bonus: $(OBJ_BNS)
 	ar rcs $(NAME) $(OBJ_BNS)
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ) $(OBJ_BNS)
