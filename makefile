@@ -68,5 +68,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean $(NAME)
-
-.SECONDARY: $(OBJ) $(OBJ_BNS)

@@ -39,3 +39,36 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (head);
 }
+// #include <stdio.h>
+// void *aymane(void *s)
+// {
+// 	char *s1 = (char *)s;
+// 	char *result = (char *)malloc(ft_strlen(s1) + 1);
+// 	int i = 0;
+// 	if (!result)
+// 		return (NULL);
+// 	while (s1[i])
+// 	{
+// 		result[i] = ft_toupper(s1[i]);
+// 		i++;
+// 	}
+// 	result[i] = '\0';
+// 	return result;
+// }
+// void delete(void *s)
+// {
+// }
+// int main()
+// {
+// 	t_list *lst = ft_lstnew("aymane");
+// 	lst->next = ft_lstnew("said");
+// 	lst->next->next = ft_lstnew("othman");
+// 	lst->next->next->next = ft_lstnew("hamzaa");
+// 	t_list *new_lst = ft_lstmap(lst, aymane, delete);
+// 	while (new_lst)
+// 	{
+// 		printf("%s\n", (char *)new_lst->content);
+// 		new_lst = new_lst->next;
+// 	}
+// 	return 0;
+// }

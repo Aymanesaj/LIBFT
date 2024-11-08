@@ -18,6 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	len;
 	char			*str;
 
+	if (!s || !f)
+		return (NULL);
 	len = 0;
 	while (s[len])
 		len++;
@@ -33,3 +35,18 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	str[i] = '\0';
 	return (str);
 }
+
+// char	ft(unsigned int i, char c)
+// {
+// 	(void *)i;
+// 	return (c + 32);
+// }
+// #include <stdio.h>
+
+// int main() 
+// {
+// 	char s[] = "AYMANE";
+// 	char (*f) (unsigned int, char);
+// 	f =  &ft;
+// 	printf("%s",ft_strmapi(s, f));
+// }
